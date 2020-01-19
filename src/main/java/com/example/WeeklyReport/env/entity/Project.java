@@ -13,11 +13,13 @@ public class Project {
 
 	private int id;
 
-	private String projectName;
+	private String name;
 	
 	private String deadline;
 	
 	private String leader;
 	
 	private String member;
+	
+	private String statusCode;
 }

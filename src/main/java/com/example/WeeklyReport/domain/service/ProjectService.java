@@ -20,11 +20,9 @@ public class ProjectService {
 		
 		List<Project> projectList = projectMapper.findAll();
 		
-		System.out.println(projectList);
 		List<ProjectDto> projectDtoList = new ArrayList<>();
 		
 		projectList.stream().forEach(x -> projectDtoList.add(ProjectDto.of(x)));
-		System.out.println(projectDtoList.size());
 		
 		return projectDtoList;
 	}

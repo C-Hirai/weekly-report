@@ -1,5 +1,6 @@
 package com.example.WeeklyReport.domain.dto;
 
+import com.example.WeeklyReport.domain.constants.ProjectStatusType;
 import com.example.WeeklyReport.env.entity.Project;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class ProjectDto {
 
 	private int id;
 
-	private String projectName;
+	private String name;
 	
 	private String deadline;
 	
@@ -25,14 +26,17 @@ public class ProjectDto {
 	
 	private String member;
 	
+	private String status;
+	
 	public static ProjectDto of(Project project) {
 		
 		return new ProjectDto(
 				project.getId(),
-				project.getProjectName(),
+				project.getName(),
 				project.getDeadline(),
 				project.getLeader(),
-				project.getMember()
+				project.getMember(),
+				ProjectStatusType.getLabel(project.getStatusCode())
 				);
 	}
 }

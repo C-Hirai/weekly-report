@@ -17,7 +17,7 @@ public class ProjectForm {
 
 	private int id;
 
-	private String projectName;
+	private String name;
 	
 	private String deadline;
 	
@@ -25,14 +25,17 @@ public class ProjectForm {
 	
 	private String member;
 	
+	private String status;
+	
     public static ProjectForm of(ProjectDto projectDto) {
 		
 		return new ProjectForm(
 				projectDto.getId(),
-				projectDto.getProjectName(),
+				projectDto.getName(),
 				projectDto.getDeadline(),
 				projectDto.getLeader(),
-				projectDto.getMember()
+				projectDto.getMember(),
+				projectDto.getStatus()
 				);
 	}
 }
