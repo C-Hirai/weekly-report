@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.example.WeeklyReport.env.mapper.ReportMapper">
+	
+	<select id="findById" resultType="com.example.WeeklyReport.env.entity.Report">
+	  select * from report inner join project on report.projectId = project.id where report.id = #{id};
+	</select>
+	
+	<select id="findListById" resultType="com.example.WeeklyReport.env.entity.Report">
+	  select * from report inner join project on report.projectId = project.id where report.weekId = #{id};
+	</select>
+	
+	<select id="findDateList" resultType="com.example.WeeklyReport.env.entity.ReportDate">
+	  select * from weekly_report where deleteFlg = '0';
+	</select>
+	
+</mapper>
