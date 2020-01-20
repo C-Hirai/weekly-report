@@ -26,6 +26,17 @@ public class ReportService {
 		
 		return reportDto;
 	}
+	
+    public List<ReportDto> fetchList(int weekId) {
+		
+		List<Report> reportList = reportMapper.findListById(weekId);
+		
+		List<ReportDto> reportDtoList = new ArrayList<ReportDto>();
+		
+		reportList.stream().forEach(x -> reportDtoList.add(ReportDto.of(x)));
+		
+		return reportDtoList;
+	}
 
 	public List<ReportDateDto> fetchDateList() {
 		

@@ -34,6 +34,18 @@ public class ReportController {
 		return reportForm;
 	}
 	
+	@GetMapping("/list/{weekId}")
+	public List<ReportForm> fetchList(@PathVariable String weekId) {
+		
+		List<ReportDto> reportDtoList = reportService.fetchList(Integer.parseInt(weekId));
+		
+		List<ReportForm> reportFormList = new ArrayList<ReportForm>();
+		
+		reportDtoList.stream().forEach(x -> reportFormList.add(ReportForm.of(x)));
+		
+		return reportFormList;
+	}
+	
 	@GetMapping("/dateList")
 	public List<ReportDateForm> fetchDateList(){
 		
