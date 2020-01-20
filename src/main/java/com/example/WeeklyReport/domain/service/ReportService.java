@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.WeeklyReport.domain.dto.ReportDateDto;
+import com.example.WeeklyReport.domain.dto.ReportDto;
+import com.example.WeeklyReport.env.entity.Report;
 import com.example.WeeklyReport.env.entity.ReportDate;
 import com.example.WeeklyReport.env.mapper.ReportMapper;
 
@@ -15,6 +17,15 @@ public class ReportService {
 	
 	@Autowired
 	ReportMapper reportMapper;
+	
+	public ReportDto fetch(int reportId) {
+		
+		Report report = reportMapper.findById(reportId);
+		
+		ReportDto reportDto = ReportDto.of(report);
+		
+		return reportDto;
+	}
 
 	public List<ReportDateDto> fetchDateList() {
 		
@@ -26,4 +37,5 @@ public class ReportService {
 		
 		return reportDateDtoList;
 	}
+	
 }
