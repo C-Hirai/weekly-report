@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,17 +21,27 @@ public class ProjectController {
 	
 	@Autowired
 	ProjectService projectService;
-
-	@GetMapping
-	public List<ProjectForm> list() {
+	
+	@GetMapping("/{projectId}")
+	public ProjectForm fetch(@PathVariable String projectId) {
 		
-		List<ProjectForm> projectList = new ArrayList<ProjectForm>();
+		ProjectDto projectDto = projectService.fetch(Integer.parseInt(projectId));
+		
+		ProjectForm projectForm = ProjectForm.of(projectDto);
+		
+		return projectForm;
+	}
+
+	@GetMapping("/list")
+	public List<ProjectForm> fetchList() {
+		
+		List<ProjectForm> projectFormList = new ArrayList<ProjectForm>();
 		
 		List<ProjectDto> projectDtoList = projectService.fetchList();
 		
-		projectDtoList.stream().forEach(x -> projectList.add(ProjectForm.of(x)));
+		projectDtoList.stream().forEach(x -> projectFormList.add(ProjectForm.of(x)));
 		
-		return projectList;
+		return projectFormList;
 	}
 	
 }

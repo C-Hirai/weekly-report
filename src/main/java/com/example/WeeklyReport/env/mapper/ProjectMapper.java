@@ -8,5 +8,7 @@ import com.example.WeeklyReport.env.entity.Project;
 @Mapper
 public interface ProjectMapper {
 
+	Project find(int projectId);
+	
 	List<Project> findAll();
 }

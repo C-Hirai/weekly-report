@@ -15,6 +15,16 @@ public class ProjectService {
 	
 	@Autowired
 	private ProjectMapper projectMapper;
+	
+	public ProjectDto fetch(int projectId) {
+		
+		Project project = projectMapper.find(projectId);
+		
+		ProjectDto projectDto = ProjectDto.of(project);
+		
+		return projectDto;
+		
+	}
 
 	public List<ProjectDto> fetchList() {
 		
