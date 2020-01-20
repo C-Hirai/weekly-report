@@ -2,10 +2,11 @@ package com.example.WeeklyReport.domain.dto;
 
 import com.example.WeeklyReport.domain.constants.ProjectStatusType;
 import com.example.WeeklyReport.env.entity.Project;
+import com.example.WeeklyReport.web.form.ProjectForm;
 
 public class ProjectDto {
 
-	private int id;
+	private Integer id;
 
 	private String name;
 
@@ -21,7 +22,7 @@ public class ProjectDto {
 
 	}
 
-	public ProjectDto(int id, String name, String deadline, String leader, String member, String status) {
+	public ProjectDto(Integer id, String name, String deadline, String leader, String member, String status) {
 		this.id = id;
 		this.name = name;
 		this.deadline = deadline;
@@ -30,11 +31,11 @@ public class ProjectDto {
 		this.status = status;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

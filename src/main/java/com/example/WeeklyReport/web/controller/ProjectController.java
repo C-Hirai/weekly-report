@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,30 +20,39 @@ import com.example.WeeklyReport.web.form.ProjectForm;
 @RequestMapping("/api/project")
 @CrossOrigin
 public class ProjectController {
-	
+
 	@Autowired
 	ProjectService projectService;
-	
+
 	@GetMapping("/{projectId}")
 	public ProjectForm fetch(@PathVariable String projectId) {
-		
+
 		ProjectDto projectDto = projectService.fetch(Integer.parseInt(projectId));
-		
+
 		ProjectForm projectForm = ProjectForm.of(projectDto);
-		
+
 		return projectForm;
 	}
 
 	@GetMapping("/list")
 	public List<ProjectForm> fetchList() {
-		
+
 		List<ProjectForm> projectFormList = new ArrayList<ProjectForm>();
-		
+
 		List<ProjectDto> projectDtoList = projectService.fetchList();
-		
+
 		projectDtoList.stream().forEach(x -> projectFormList.add(ProjectForm.of(x)));
-		
+
 		return projectFormList;
 	}
-	
+
+	@PostMapping
+	public void register(@RequestBody ProjectForm projectForm) {
+
+		ProjectDto projectDto = new ProjectDto(null, projectForm.getName(), projectForm.getDeadline(),
+				projectForm.getLeader(), projectForm.getMember(), null);
+		
+		projectService.register(projectDto);
+	}
+
 }

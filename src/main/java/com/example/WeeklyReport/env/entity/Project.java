@@ -2,7 +2,7 @@ package com.example.WeeklyReport.env.entity;
 
 public class Project {
 
-	private int id;
+	private Integer id;
 
 	private String name;
 	
@@ -18,7 +18,7 @@ public class Project {
 		
 	}
 	
-	public Project(int id, String name, String deadline, String leader, String member, String statusCode) {
+	public Project(Integer id, String name, String deadline, String leader, String member, String statusCode) {
 		this.id = id;
 		this.name = name;
 		this.deadline = deadline;
@@ -27,11 +27,11 @@ public class Project {
 		this.statusCode = statusCode;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

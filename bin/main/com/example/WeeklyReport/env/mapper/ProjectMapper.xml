@@ -7,7 +7,11 @@
 	  select * from project where id = #{projectId};
 	</select>
 	
-	<select id="findAll" resultType="com.example.WeeklyReport.env.entity.Project">
+	<select id="findList" resultType="com.example.WeeklyReport.env.entity.Project">
 	  select * from project;
 	</select>
+	
+	<insert id="register" useGeneratedKeys="true" keyProperty="id">
+      insert into project (name, deadline, leader, member, statusCode) values (#{name}, #{deadline}, #{leader}, #{member}, #{statusCode})
+   </insert>
 </mapper>

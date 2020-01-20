@@ -10,5 +10,7 @@ public interface ProjectMapper {
 
 	Project find(int projectId);
 	
-	List<Project> findAll();
+	List<Project> findList();
+	
+	void register(Project project);
 }

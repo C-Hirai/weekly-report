@@ -4,7 +4,7 @@ import com.example.WeeklyReport.domain.dto.ProjectDto;
 
 public class ProjectForm {
 
-	private int id;
+	private Integer id;
 
 	private String name;
 	
@@ -20,7 +20,7 @@ public class ProjectForm {
 
 	}
 
-	public ProjectForm(int id, String name, String deadline, String leader, String member, String status) {
+	public ProjectForm(Integer id, String name, String deadline, String leader, String member, String status) {
 		this.id = id;
 		this.name = name;
 		this.deadline = deadline;
@@ -29,11 +29,11 @@ public class ProjectForm {
 		this.status = status;
 	}
 	
-    public int getId() {
+    public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
