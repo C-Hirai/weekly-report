@@ -81,6 +81,6 @@ public class ProjectDto {
 	public static ProjectDto of(Project project) {
 
 		return new ProjectDto(project.getId(), project.getName(), project.getDeadline(), project.getLeader(),
-				project.getMember(), ProjectStatusType.getLabel(project.getStatusCode()));
+				project.getMember(), ProjectStatusType.getProjectStatusType(project.getStatusCode()).getLabel());
 	}
 }

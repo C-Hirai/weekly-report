@@ -13,25 +13,24 @@ public enum ProjectStatusType {
 		this.code = code;
 	}
 	
-	public static String getLabel(String code) {
-		switch(code) {
-		case "10":
-			return OPEN.label;
-		case "20":
-			return CLOSE.label;
-		default:
-			return "";
-		}
+	public String getLabel() {
+		return label;
 	}
-	
-	public static String getCode(String label) {
-		switch(label) {
+
+	public String getCode() {
+		return code;
+	}
+
+	public static ProjectStatusType getProjectStatusType(String value) {
+		switch(value) {
 		case "open":
-			return OPEN.code;
+		case "10":
+			return OPEN;
 		case "close":
-			return CLOSE.code;
+		case "20":
+			return CLOSE;
 		default:
-			return "";
+			return null;
 		}
 	}
 }
