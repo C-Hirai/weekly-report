@@ -31,9 +31,9 @@ public class ReportService {
 	@Autowired
 	ProjectMapper projectMapper;
 
-	public ReportDto fetch(int reportId) {
+	public ReportDto fetch(int id) {
 
-		Report report = reportMapper.findById(reportId);
+		Report report = reportMapper.findById(id);
 		ReportDate reportDate = reportDateMapper.findById(report.getReportDateId());
 		Project project = projectMapper.findById(report.getProjectId());
 

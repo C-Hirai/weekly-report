@@ -29,17 +29,18 @@ public class ReportController {
 	@Autowired
 	ReportService reportService;
 
-	@GetMapping("/{reportId}")
-	public ReportForm fetch(@PathVariable String reportId) {
+	@GetMapping
+	public ReportForm fetch(@RequestParam String id) {
 
-		ReportDto reportDto = reportService.fetch(Integer.parseInt(reportId));
+		ReportDto reportDto = reportService.fetch(Integer.parseInt(id));
 
 		ReportForm reportForm = ReportForm.of(reportDto);
 
+		System.out.println(reportForm);
 		return reportForm;
 	}
 
-	@GetMapping
+	@GetMapping("/list")
 	public List<ReportForm> fetchList(@DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate date) {
 
 		List<ReportDto> reportDtoList = reportService.fetchList(date);
@@ -51,7 +52,7 @@ public class ReportController {
 		return reportFormList;
 	}
 
-	@GetMapping("/list")
+	@GetMapping("/dateList")
 	public List<ReportDateForm> fetchDateList() {
 
 		List<ReportDateForm> reportDateFormList = new ArrayList<ReportDateForm>();
