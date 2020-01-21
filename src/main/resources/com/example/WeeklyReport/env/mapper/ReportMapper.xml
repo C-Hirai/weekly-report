@@ -9,27 +9,14 @@
 	
 	<select id="findLastWeek" resultType="com.example.WeeklyReport.env.entity.Report">
 	  select * from report where reportDateId = #{reportDateId} and projectId = #{projectId};
-	</select>
+	</select>	
 	
 	<select id="findListById" resultType="com.example.WeeklyReport.env.entity.Report">
-	  select * from report inner join project on report.projectId = project.id where report.weekId = #{id};
-	</select>
-	
-	<select id="findLatestDate" resultType="com.example.WeeklyReport.env.entity.ReportDate">
-	  select * from report_date where deleteFlg = '0' order by id desc limit 1;
-	</select>
-	
-	<select id="findDateList" resultType="com.example.WeeklyReport.env.entity.ReportDate">
-	  select * from report_date where deleteFlg = '0' order by date desc;
+	  select * from report inner join project on report.projectId = project.id where report.reportDateId = #{reportDateId};
 	</select>
 	
 	<insert id="insert">
 	  insert into report (reportDateId, projectId, lastWeekCondition, thisWeekPlan, problem) values (#{reportDateId}, #{projectId}, #{lastWeekCondition}, #{thisWeekPlan}, #{problem});
-	</insert>
-	
-	<insert id="insertDate">
-	  insert into report_date (date, deleteFlg) values (#{date}, #{deleteFlg});
-	</insert>
-	
+	</insert>	
 	
 </mapper>
