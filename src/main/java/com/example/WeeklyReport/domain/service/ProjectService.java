@@ -19,7 +19,7 @@ public class ProjectService {
 
 	public ProjectDto fetch(int projectId) {
 
-		Project project = projectMapper.find(projectId);
+		Project project = projectMapper.findById(projectId);
 
 		ProjectDto projectDto = ProjectDto.of(project);
 
@@ -56,7 +56,7 @@ public class ProjectService {
 	
 	public void changeStatus(int projectId) {
 
-		ProjectStatusType currentStatus = ProjectStatusType.getProjectStatusType(projectMapper.find(projectId).getStatusCode());
+		ProjectStatusType currentStatus = ProjectStatusType.getProjectStatusType(projectMapper.findById(projectId).getStatusCode());
 
 		switch(currentStatus) {
 		
