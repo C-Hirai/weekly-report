@@ -38,39 +38,45 @@ public class ProjectService {
 		return projectDtoList;
 	}
 
-	public void create(ProjectDto projectDto) {
+	public Project create(ProjectDto projectDto) {
 
 		Project project = new Project(null, projectDto.getName(), projectDto.getDeadline(), projectDto.getLeader(),
 				projectDto.getMember(), ProjectStatusType.OPEN.getCode());
 
 		projectMapper.create(project);
+		
+		return project;
 	}
 	
-	public void update(ProjectDto projectDto) {
+	public Project update(ProjectDto projectDto) {
 
 		Project project = new Project(projectDto.getId(), projectDto.getName(), projectDto.getDeadline(), projectDto.getLeader(),
 				projectDto.getMember(), null);
 
 		projectMapper.update(project);
+		
+		return project;
 	}
 	
-	public void changeStatus(int projectId) {
+	public ProjectStatusType changeStatus(int id) {
 
-		ProjectStatusType currentStatus = ProjectStatusType.getProjectStatusType(projectMapper.findById(projectId).getStatusCode());
+		ProjectStatusType currentStatus = ProjectStatusType.getProjectStatusType(projectMapper.findById(id).getStatusCode());
 
 		switch(currentStatus) {
 		
 		case OPEN:
-			projectMapper.changeStatus(projectId, ProjectStatusType.CLOSE.getCode());
+			projectMapper.changeStatus(id, ProjectStatusType.CLOSE.getCode());
 			break;
 		
 		case CLOSE:
-			projectMapper.changeStatus(projectId, ProjectStatusType.OPEN.getCode());
+			projectMapper.changeStatus(id, ProjectStatusType.OPEN.getCode());
 			break;
 			
 		default:
 			break;
 			
 		}
+		
+		return currentStatus;
 	}
 }

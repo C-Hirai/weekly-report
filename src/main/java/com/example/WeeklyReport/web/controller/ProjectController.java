@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.WeeklyReport.domain.constants.ProjectStatusType;
 import com.example.WeeklyReport.domain.dto.ProjectDto;
 import com.example.WeeklyReport.domain.service.ProjectService;
+import com.example.WeeklyReport.env.entity.Project;
 import com.example.WeeklyReport.web.form.ProjectForm;
 
 @RestController
@@ -47,33 +49,33 @@ public class ProjectController {
 	}
 
 	@PostMapping("/new")
-	public ProjectDto create(@RequestBody ProjectForm projectForm) {
+	public Project create(@RequestBody ProjectForm projectForm) {
 
 		ProjectDto projectDto = new ProjectDto(null, projectForm.getName(), projectForm.getDeadline(),
 				projectForm.getLeader(), projectForm.getMember(), null);
 
-		projectService.create(projectDto);
+		Project project = projectService.create(projectDto);
 
-		return projectDto;
+		return project;
 	}
 
 	@PostMapping("/edit")
-	public ProjectDto update(@RequestBody ProjectForm projectForm, @RequestParam String id) {
+	public Project update(@RequestBody ProjectForm projectForm, @RequestParam String id) {
 
 		ProjectDto projectDto = new ProjectDto(Integer.parseInt(id), projectForm.getName(),
 				projectForm.getDeadline(), projectForm.getLeader(), projectForm.getMember(), null);
 
-		projectService.update(projectDto);
+		Project project = projectService.update(projectDto);
 
-		return projectDto;
+		return project;
 	}
 	
 	@PostMapping("/change")
-	public String changeStatus(@RequestParam String id) {
+	public ProjectStatusType changeStatus(@RequestParam String id) {
 
-		projectService.changeStatus(Integer.parseInt(id));
-
-		return id;
+		ProjectStatusType projectStatusType = projectService.changeStatus(Integer.parseInt(id));
+		
+		return projectStatusType;
 	}
 
 }
