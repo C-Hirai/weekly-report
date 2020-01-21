@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -68,6 +69,18 @@ public class ReportController {
 		List<Report> reportList = reportService.create();
 
 		return reportList;
+	}
+
+	@PostMapping("/edit")
+	public Report update(@RequestParam String id, @RequestBody ReportForm reportForm) {
+
+		ReportDto reportDto = new ReportDto(Integer.parseInt(id), null, reportForm.getThisWeekCondition(),
+				reportForm.getThisWeekPlan(), reportForm.getThisWeekResult(), reportForm.getProblem(),
+				reportForm.getNextWeekPlan(), null, null, null);
+
+		Report report = reportService.update(reportDto);
+
+		return report;
 	}
 
 }

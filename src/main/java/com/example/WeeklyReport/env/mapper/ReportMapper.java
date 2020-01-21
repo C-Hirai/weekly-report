@@ -17,4 +17,6 @@ public interface ReportMapper {
 	List<Report> findListById(int reportDateId);
 
 	void insert(Report report);
+	
+	void update(Report report);
 }

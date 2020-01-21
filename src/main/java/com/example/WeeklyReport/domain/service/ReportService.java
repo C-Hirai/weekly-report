@@ -108,4 +108,15 @@ public class ReportService {
 		return reportList;
 	}
 
+	public Report update(ReportDto reportDto) {
+
+		Report report = new Report(reportDto.getId(), null, reportDto.getThisWeekCondition(),
+				reportDto.getThisWeekPlan(), reportDto.getThisWeekResult(), reportDto.getProblem(),
+				reportDto.getNextWeekPlan(), null, null, null);
+		
+		reportMapper.update(report);
+		
+		return report;
+	}
+
 }

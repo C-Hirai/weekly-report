@@ -19,4 +19,8 @@
 	  insert into report (reportDateId, projectId, lastWeekCondition, thisWeekPlan, problem) values (#{reportDateId}, #{projectId}, #{lastWeekCondition}, #{thisWeekPlan}, #{problem});
 	</insert>	
 	
+	<update id="update">
+	  update report set thisWeekCondition = #{thisWeekCondition}, thisWeekPlan = #{thisWeekPlan}, thisWeekResult = #{thisWeekResult}, problem = #{problem}, nextWeekPlan = #{nextWeekPlan} where id = #{id};
+	</update>
+	
 </mapper>
