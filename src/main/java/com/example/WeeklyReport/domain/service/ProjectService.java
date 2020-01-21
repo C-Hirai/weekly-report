@@ -10,6 +10,7 @@ import com.example.WeeklyReport.domain.constants.ProjectStatusType;
 import com.example.WeeklyReport.domain.dto.ProjectDto;
 import com.example.WeeklyReport.env.entity.Project;
 import com.example.WeeklyReport.env.mapper.ProjectMapper;
+import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
 @Service
 public class ProjectService {
@@ -52,5 +53,25 @@ public class ProjectService {
 				projectDto.getMember(), null);
 
 		projectMapper.update(project);
+	}
+	
+	public void changeStatus(int projectId) {
+
+		ProjectStatusType currentStatus = ProjectStatusType.getProjectStatusType(projectMapper.find(projectId).getStatusCode());
+
+		switch(currentStatus) {
+		
+		case OPEN:
+			projectMapper.changeStatus(projectId, ProjectStatusType.CLOSE.getCode());
+			break;
+		
+		case CLOSE:
+			projectMapper.changeStatus(projectId, ProjectStatusType.OPEN.getCode());
+			break;
+			
+		default:
+			break;
+			
+		}
 	}
 }

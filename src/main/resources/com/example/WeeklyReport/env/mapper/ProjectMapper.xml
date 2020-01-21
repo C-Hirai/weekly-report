@@ -15,7 +15,11 @@
       insert into project (name, deadline, leader, member, statusCode) values (#{name}, #{deadline}, #{leader}, #{member}, #{statusCode});
    </insert>
    
-   <insert id="update" useGeneratedKeys="true" keyProperty="id">
+   <update id="update">
       update project set name = #{name}, deadline = #{deadline}, leader = #{leader}, member = #{member} where id = #{id};
-   </insert>
+   </update>
+   
+   <update id="changeStatus">
+      update project set statusCode = #{statusCode} where id = #{id};
+   </update>
 </mapper>

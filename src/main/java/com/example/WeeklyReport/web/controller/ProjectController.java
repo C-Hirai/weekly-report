@@ -67,5 +67,13 @@ public class ProjectController {
 
 		return projectDto;
 	}
+	
+	@PostMapping("/change/{projectId}")
+	public String changeStatus(@PathVariable String projectId) {
+
+		projectService.changeStatus(Integer.parseInt(projectId));
+
+		return projectId;
+	}
 
 }
