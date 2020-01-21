@@ -15,12 +15,17 @@
 	  select * from report_date where deleteFlg = '0' order by id desc limit 1;
 	</select>
 	
-	<insert id="insert">
-	  insert into report_date (date, deleteFlg) values (#{date}, #{deleteFlg});
-	</insert>
-	
 	<select id="findDateList" resultType="com.example.WeeklyReport.env.entity.ReportDate">
 	  select * from report_date where deleteFlg = '0' order by date desc;
 	</select>
+	
+	<insert id="insert">
+	  insert into report (reportDateId, projectId, lastWeekCondition, thisWeekPlan, problem) values (#{reportDateId}, #{projectId}, #{lastWeekCondition}, #{thisWeekPlan}, #{problem});
+	</insert>
+	
+	<insert id="insertDate">
+	  insert into report_date (date, deleteFlg) values (#{date}, #{deleteFlg});
+	</insert>
+	
 	
 </mapper>

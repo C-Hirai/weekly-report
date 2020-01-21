@@ -4,7 +4,9 @@ public class Report {
 
 	int id;
 
-	String condition;
+	String lastWeekCondition;
+	
+	String thisWeekCondition;
 
 	String thisWeekPlan;
 
@@ -15,6 +17,12 @@ public class Report {
 	String nextWeekPlan;
 
 	String memo;
+	
+	int reportDateId;
+	
+	ReportDate reportDate;
+	
+	int projectId;
 
 	Project project;
 
@@ -22,15 +30,17 @@ public class Report {
 
 	}
 
-	public Report(int id, String condition, String thisWeekPlan, String thisWeekResult, String problem,
-			String nextWeekPlan, String memo, Project project) {
+	public Report(int id, String lastWeekCondition, String thisWeekCondition, String thisWeekPlan, String thisWeekResult, String problem,
+			String nextWeekPlan, String memo, ReportDate reportDate, Project project) {
 		this.id = id;
-		this.condition = condition;
+		this.lastWeekCondition = lastWeekCondition;
+		this.thisWeekCondition = thisWeekCondition;
 		this.thisWeekPlan = thisWeekPlan;
 		this.problem = problem;
 		this.thisWeekResult = thisWeekResult;
 		this.nextWeekPlan = nextWeekPlan;
 		this.memo = memo;
+		this.reportDate = reportDate;
 		this.project = project;
 	}
 
@@ -41,13 +51,21 @@ public class Report {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getCondition() {
-		return condition;
+	
+	public String getLastWeekCondition() {
+		return lastWeekCondition;
 	}
 
-	public void setCondition(String condition) {
-		this.condition = condition;
+	public void setLastWeekCondition(String lastWeekCondition) {
+		this.lastWeekCondition = lastWeekCondition;
+	}
+
+	public String getThisWeekCondition() {
+		return thisWeekCondition;
+	}
+
+	public void setThisWeekCondition(String thisWeekCondition) {
+		this.thisWeekCondition = thisWeekCondition;
 	}
 
 	public String getThisWeekPlan() {
@@ -88,6 +106,30 @@ public class Report {
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+	
+	public int getReportDateId() {
+		return reportDateId;
+	}
+
+	public void setReportDateId(int reportDateId) {
+		this.reportDateId = reportDateId;
+	}
+
+	public ReportDate getReportDate() {
+		return reportDate;
+	}
+
+	public void setReportDate(ReportDate reportDate) {
+		this.reportDate = reportDate;
+	}
+	
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
 	}
 
 	public Project getProject() {

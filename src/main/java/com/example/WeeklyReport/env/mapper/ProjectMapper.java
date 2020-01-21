@@ -14,6 +14,8 @@ public interface ProjectMapper {
 	
 	List<Project> findList();
 	
+	List<Project> findOpenList();
+	
 	void create(Project project);
 	
 	void update(Project project);

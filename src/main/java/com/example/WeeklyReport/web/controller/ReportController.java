@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.WeeklyReport.domain.dto.ReportDateDto;
 import com.example.WeeklyReport.domain.dto.ReportDto;
 import com.example.WeeklyReport.domain.service.ReportService;
+import com.example.WeeklyReport.env.entity.Report;
 import com.example.WeeklyReport.web.form.ReportDateForm;
 import com.example.WeeklyReport.web.form.ReportForm;
 
@@ -61,11 +62,11 @@ public class ReportController {
 	}
 	
 	@PostMapping("/new")
-	public LocalDate create() {
+	public List<Report> create() {
 		
-		LocalDate date = reportService.create();
+		List<Report> reportList = reportService.create();
 		
-		return date;
+		return reportList;
 	}
 
 }

@@ -6,7 +6,9 @@ public class ReportForm {
 
 	int id;
 
-	String condition;
+    String lastWeekCondition;
+	
+	String thisWeekCondition;
 
 	String thisWeekPlan;
 
@@ -17,6 +19,8 @@ public class ReportForm {
 	String nextWeekPlan;
 
 	String memo;
+	
+	ReportDateForm reportDate;
 
 	ProjectForm project;
 
@@ -24,15 +28,17 @@ public class ReportForm {
 
 	}
 
-	public ReportForm(int id, String condition, String thisWeekPlan, String thisWeekResult, String problem,
-			String nextWeekPlan, String memo, ProjectForm project) {
+	public ReportForm(int id, String lastWeekCondition, String thisWeekCondition, String thisWeekPlan, String thisWeekResult, String problem,
+			String nextWeekPlan, String memo, ReportDateForm reportDate, ProjectForm project) {
 		this.id = id;
-		this.condition = condition;
+		this.lastWeekCondition = lastWeekCondition;
+		this.thisWeekCondition = thisWeekCondition;
 		this.thisWeekPlan = thisWeekPlan;
 		this.problem = problem;
 		this.thisWeekResult = thisWeekResult;
 		this.nextWeekPlan = nextWeekPlan;
 		this.memo = memo;
+		this.reportDate = reportDate;
 		this.project = project;
 	}
 
@@ -44,12 +50,20 @@ public class ReportForm {
 		this.id = id;
 	}
 
-	public String getCondition() {
-		return condition;
+	public String getLastWeekCondition() {
+		return lastWeekCondition;
 	}
 
-	public void setCondition(String condition) {
-		this.condition = condition;
+	public void setLastWeekCondition(String lastWeekCondition) {
+		this.lastWeekCondition = lastWeekCondition;
+	}
+
+	public String getThisWeekCondition() {
+		return thisWeekCondition;
+	}
+
+	public void setThisWeekCondition(String thisWeekCondition) {
+		this.thisWeekCondition = thisWeekCondition;
 	}
 
 	public String getThisWeekPlan() {
@@ -103,12 +117,14 @@ public class ReportForm {
 	public static ReportForm of(ReportDto reportDto) {
 		return new ReportForm(
 				reportDto.getId(), 
-				reportDto.getCondition(), 
+				reportDto.getLastWeekCondition(), 
+				reportDto.getThisWeekCondition(), 
 				reportDto.getThisWeekPlan(),
 				reportDto.getThisWeekResult(), 
-				reportDto.getProblem(), 
-				reportDto.getNextWeekPlan(), 
+				reportDto.getProblem(),
+				reportDto.getNextWeekPlan(),
 				reportDto.getMemo(),
+				ReportDateForm.of(reportDto.getReportDate()),
 				ProjectForm.of(reportDto.getProject()));
 	}
 }

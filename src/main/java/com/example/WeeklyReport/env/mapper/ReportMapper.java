@@ -18,7 +18,9 @@ public interface ReportMapper {
 	
 	ReportDate findLatestDate();
 	
-	void insert(@Param("date") LocalDate date, @Param("deleteFlg") boolean deleteFlg);
-	
 	List<ReportDate> findDateList();
+	
+	void insert(Report report);
+	
+	void insertDate(@Param("date") LocalDate date, @Param("deleteFlg") boolean deleteFlg);
 }

@@ -6,7 +6,9 @@ public class ReportDto {
 
 	int id;
 
-	String condition;
+    String lastWeekCondition;
+	
+	String thisWeekCondition;
 
 	String thisWeekPlan;
 
@@ -17,6 +19,8 @@ public class ReportDto {
 	String nextWeekPlan;
 
 	String memo;
+	
+	ReportDateDto reportDate;
 
 	ProjectDto project;
 
@@ -24,15 +28,17 @@ public class ReportDto {
 
 	}
 
-	public ReportDto(int id, String condition, String thisWeekPlan, String thisWeekResult, String problem,
-			String nextWeekPlan, String memo, ProjectDto project) {
+	public ReportDto(int id, String lastWeekCondition, String thisWeekCondition, String thisWeekPlan, String thisWeekResult, String problem,
+			String nextWeekPlan, String memo, ReportDateDto reportDate, ProjectDto project) {
 		this.id = id;
-		this.condition = condition;
+		this.lastWeekCondition = lastWeekCondition;
+		this.thisWeekCondition = thisWeekCondition;
 		this.thisWeekPlan = thisWeekPlan;
 		this.problem = problem;
 		this.thisWeekResult = thisWeekResult;
 		this.nextWeekPlan = nextWeekPlan;
 		this.memo = memo;
+		this.reportDate = reportDate;
 		this.project = project;
 	}
 
@@ -44,12 +50,20 @@ public class ReportDto {
 		this.id = id;
 	}
 
-	public String getCondition() {
-		return condition;
+	public String getLastWeekCondition() {
+		return lastWeekCondition;
 	}
 
-	public void setCondition(String condition) {
-		this.condition = condition;
+	public void setLastWeekCondition(String lastWeekCondition) {
+		this.lastWeekCondition = lastWeekCondition;
+	}
+
+	public String getThisWeekCondition() {
+		return thisWeekCondition;
+	}
+
+	public void setThisWeekCondition(String thisWeekCondition) {
+		this.thisWeekCondition = thisWeekCondition;
 	}
 
 	public String getThisWeekPlan() {
@@ -91,6 +105,14 @@ public class ReportDto {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+	
+	public ReportDateDto getReportDate() {
+		return reportDate;
+	}
+
+	public void setReportDate(ReportDateDto reportDate) {
+		this.reportDate = reportDate;
+	}
 
 	public ProjectDto getProject() {
 		return project;
@@ -103,12 +125,14 @@ public class ReportDto {
 	public static ReportDto of(Report report) {
 		return new ReportDto(
 				report.getId(), 
-				report.getCondition(), 
+				report.getLastWeekCondition(), 
+				report.getThisWeekCondition(), 
 				report.getThisWeekPlan(),
 				report.getThisWeekResult(), 
 				report.getProblem(), 
 				report.getNextWeekPlan(), 
 				report.getMemo(),
+				ReportDateDto.of(report.getReportDate()),
 				ProjectDto.of(report.getProject()));
 	}
 }

@@ -10,13 +10,12 @@ import com.example.WeeklyReport.domain.constants.ProjectStatusType;
 import com.example.WeeklyReport.domain.dto.ProjectDto;
 import com.example.WeeklyReport.env.entity.Project;
 import com.example.WeeklyReport.env.mapper.ProjectMapper;
-import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
 @Service
 public class ProjectService {
 
 	@Autowired
-	private ProjectMapper projectMapper;
+	ProjectMapper projectMapper;
 
 	public ProjectDto fetch(int projectId) {
 

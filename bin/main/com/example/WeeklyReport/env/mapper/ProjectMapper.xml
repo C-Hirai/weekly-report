@@ -11,6 +11,10 @@
 	  select * from project;
 	</select>
 	
+	<select id="findOpenList" resultType="com.example.WeeklyReport.env.entity.Project">
+	  select * from project where statusCode = '10';
+	</select>
+	
 	<insert id="create" useGeneratedKeys="true" keyProperty="id">
       insert into project (name, deadline, leader, member, statusCode) values (#{name}, #{deadline}, #{leader}, #{member}, #{statusCode});
    </insert>
