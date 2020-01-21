@@ -20,7 +20,7 @@
 	</insert>
 	
 	<select id="findDateList" resultType="com.example.WeeklyReport.env.entity.ReportDate">
-	  select * from report_date where deleteFlg = '0';
+	  select * from report_date where deleteFlg = '0' order by date desc;
 	</select>
 	
 </mapper>
