@@ -14,6 +14,8 @@ public interface ReportMapper {
 	
 	Report findById(int reportId);
 	
+	Report findLastWeek(@Param("reportDateId") int reportDateId, @Param("projectId") int projectId);
+	
 	List<Report> findListById(int weekId);
 	
 	ReportDate findLatestDate();

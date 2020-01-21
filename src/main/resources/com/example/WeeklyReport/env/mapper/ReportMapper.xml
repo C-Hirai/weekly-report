@@ -7,6 +7,10 @@
 	  select * from report inner join project on report.projectId = project.id where report.id = #{id};
 	</select>
 	
+	<select id="findLastWeek" resultType="com.example.WeeklyReport.env.entity.Report">
+	  select * from report where reportDateId = #{reportDateId} and projectId = #{projectId};
+	</select>
+	
 	<select id="findListById" resultType="com.example.WeeklyReport.env.entity.Report">
 	  select * from report inner join project on report.projectId = project.id where report.weekId = #{id};
 	</select>

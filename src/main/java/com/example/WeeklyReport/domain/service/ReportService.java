@@ -72,12 +72,19 @@ public class ReportService {
 		List<Project> openProjectList = projectMapper.findOpenList();
 		
 		List<Report> reportList = new ArrayList<Report>();
-		for (Project project : openProjectList) {
-			Report report = new Report();
-			report.setReportDateId(createDate.getId());
-			report.setProjectId(project.getId());
+		for (Project p : openProjectList) {
+			Report r = new Report();
+			r.setReportDateId(createDate.getId());
+			r.setProjectId(p.getId());
+			
+			Report lastWeekReport = reportMapper.findLastWeek(createDate.getId()-1, p.getId());
+			if(Objects.nonNull(lastWeekReport)) {
+				r.setLastWeekCondition(lastWeekReport.getThisWeekCondition());
+				r.setThisWeekPlan(lastWeekReport.getNextWeekPlan());
+				r.setProblem(lastWeekReport.getProblem());
+			}
 
-			reportList.add(report);
+			reportList.add(r);
 		}
 
 		reportList.stream().forEach(x -> reportMapper.insert(x));
