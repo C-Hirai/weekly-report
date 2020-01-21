@@ -11,9 +11,9 @@ import com.example.WeeklyReport.env.entity.ReportDate;
 @Mapper
 public interface ReportDateMapper {
 	
-	ReportDate findLatestDate();
+	ReportDate findLatest();
 	
-	List<ReportDate> findDateList();
+	List<ReportDate> findDList();
 	
-	void insertDate(@Param("date") LocalDate date, @Param("deleteFlg") boolean deleteFlg);
+	void insert(@Param("date") LocalDate date, @Param("deleteFlg") boolean deleteFlg);
 }

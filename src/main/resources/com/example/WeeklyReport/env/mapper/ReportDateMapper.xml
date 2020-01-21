@@ -3,15 +3,15 @@
 <mapper
 	namespace="com.example.WeeklyReport.env.mapper.ReportDateMapper">
 	
-	<select id="findLatestDate" resultType="com.example.WeeklyReport.env.entity.ReportDate">
+	<select id="findLatest" resultType="com.example.WeeklyReport.env.entity.ReportDate">
 	  select * from report_date where deleteFlg = '0' order by id desc limit 1;
 	</select>
 	
-	<select id="findDateList" resultType="com.example.WeeklyReport.env.entity.ReportDate">
+	<select id="findList" resultType="com.example.WeeklyReport.env.entity.ReportDate">
 	  select * from report_date where deleteFlg = '0' order by date desc;
 	</select>
 	
-	<insert id="insertDate">
+	<insert id="insert">
 	  insert into report_date (date, deleteFlg) values (#{date}, #{deleteFlg});
 	</insert>
 	
