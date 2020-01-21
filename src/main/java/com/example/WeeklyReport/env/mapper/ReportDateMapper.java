@@ -13,7 +13,7 @@ public interface ReportDateMapper {
 	
 	ReportDate findLatest();
 	
-	List<ReportDate> findDList();
+	List<ReportDate> findList();
 	
 	void insert(@Param("date") LocalDate date, @Param("deleteFlg") boolean deleteFlg);
 }
