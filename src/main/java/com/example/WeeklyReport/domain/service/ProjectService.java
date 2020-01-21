@@ -17,9 +17,9 @@ public class ProjectService {
 	@Autowired
 	ProjectMapper projectMapper;
 
-	public ProjectDto fetch(int projectId) {
+	public ProjectDto fetch(int id) {
 
-		Project project = projectMapper.findById(projectId);
+		Project project = projectMapper.findById(id);
 
 		ProjectDto projectDto = ProjectDto.of(project);
 

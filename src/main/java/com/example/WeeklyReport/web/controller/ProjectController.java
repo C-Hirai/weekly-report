@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.WeeklyReport.domain.dto.ProjectDto;
@@ -24,10 +24,10 @@ public class ProjectController {
 	@Autowired
 	ProjectService projectService;
 
-	@GetMapping("/{projectId}")
-	public ProjectForm fetch(@PathVariable String projectId) {
+	@GetMapping
+	public ProjectForm fetch(@RequestParam String id) {
 
-		ProjectDto projectDto = projectService.fetch(Integer.parseInt(projectId));
+		ProjectDto projectDto = projectService.fetch(Integer.parseInt(id));
 
 		ProjectForm projectForm = ProjectForm.of(projectDto);
 
@@ -57,10 +57,10 @@ public class ProjectController {
 		return projectDto;
 	}
 
-	@PostMapping("/edit/{projectId}")
-	public ProjectDto update(@RequestBody ProjectForm projectForm, @PathVariable String projectId) {
+	@PostMapping("/edit")
+	public ProjectDto update(@RequestBody ProjectForm projectForm, @RequestParam String id) {
 
-		ProjectDto projectDto = new ProjectDto(Integer.parseInt(projectId), projectForm.getName(),
+		ProjectDto projectDto = new ProjectDto(Integer.parseInt(id), projectForm.getName(),
 				projectForm.getDeadline(), projectForm.getLeader(), projectForm.getMember(), null);
 
 		projectService.update(projectDto);
@@ -68,12 +68,12 @@ public class ProjectController {
 		return projectDto;
 	}
 	
-	@PostMapping("/change/{projectId}")
-	public String changeStatus(@PathVariable String projectId) {
+	@PostMapping("/change")
+	public String changeStatus(@RequestParam String id) {
 
-		projectService.changeStatus(Integer.parseInt(projectId));
+		projectService.changeStatus(Integer.parseInt(id));
 
-		return projectId;
+		return id;
 	}
 
 }
