@@ -14,6 +14,7 @@ import com.example.WeeklyReport.env.entity.Project;
 import com.example.WeeklyReport.env.entity.Report;
 import com.example.WeeklyReport.env.entity.ReportDate;
 import com.example.WeeklyReport.env.mapper.ProjectMapper;
+import com.example.WeeklyReport.env.mapper.ReportDateMapper;
 import com.example.WeeklyReport.env.mapper.ReportMapper;
 
 @Service
@@ -23,6 +24,9 @@ public class ReportService {
 
 	@Autowired
 	ReportMapper reportMapper;
+	
+	@Autowired
+	ReportDateMapper reportDateMapper;
 
 	@Autowired
 	ProjectMapper projectMapper;
@@ -36,9 +40,14 @@ public class ReportService {
 		return reportDto;
 	}
 
-	public List<ReportDto> fetchList(int weekId) {
+	public List<ReportDto> fetchList(LocalDate date) {
+		
+		ReportDate reportDate = reportDateMapper.findByDate(date);
 
-		List<Report> reportList = reportMapper.findListById(weekId);
+		List<Report> reportList = new ArrayList<Report>();
+		if(Objects.nonNull(reportDate)) {
+			reportList = reportMapper.findListById(reportDate.getId());
+		}
 
 		List<ReportDto> reportDtoList = new ArrayList<ReportDto>();
 
@@ -51,7 +60,7 @@ public class ReportService {
 
 		List<ReportDateDto> reportDateDtoList = new ArrayList<ReportDateDto>();
 
-		List<ReportDate> reportDateList = reportMapper.findDateList();
+		List<ReportDate> reportDateList = reportDateMapper.findList();
 
 		reportDateList.stream().forEach(x -> reportDateDtoList.add(ReportDateDto.of(x)));
 
@@ -60,15 +69,15 @@ public class ReportService {
 
 	public List<Report> create() {
 
-		ReportDate reportDate = reportMapper.findLatestDate();
+		ReportDate reportDate = reportDateMapper.findLatest();
 
 		if (Objects.nonNull(reportDate)) {
-			reportMapper.insertDate(reportDate.getDate().plusDays(ONE_WEEK_DAY), false);
+			reportDateMapper.insert(reportDate.getDate().plusDays(ONE_WEEK_DAY), false);
 		} else {
-			reportMapper.insertDate(LocalDate.now(), false);
+			reportDateMapper.insert(LocalDate.now(), false);
 		}
 		
-		ReportDate createDate = reportMapper.findLatestDate();
+		ReportDate createDate = reportDateMapper.findLatest();
 		List<Project> openProjectList = projectMapper.findOpenList();
 		
 		List<Report> reportList = new ArrayList<Report>();

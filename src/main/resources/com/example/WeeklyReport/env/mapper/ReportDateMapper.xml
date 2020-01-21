@@ -3,6 +3,10 @@
 <mapper
 	namespace="com.example.WeeklyReport.env.mapper.ReportDateMapper">
 	
+	<select id="findByDate" resultType="com.example.WeeklyReport.env.entity.ReportDate">
+	  select * from report_date where date = #{date} and deleteFlg = '0';
+	</select>
+	
 	<select id="findLatest" resultType="com.example.WeeklyReport.env.entity.ReportDate">
 	  select * from report_date where deleteFlg = '0' order by id desc limit 1;
 	</select>

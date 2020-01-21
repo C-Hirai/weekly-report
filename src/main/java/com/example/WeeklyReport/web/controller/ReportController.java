@@ -37,10 +37,10 @@ public class ReportController {
 		return reportForm;
 	}
 	
-	@GetMapping("/list/{weekId}")
-	public List<ReportForm> fetchList(@PathVariable String weekId) {
+	@GetMapping("/list/{date}")
+	public List<ReportForm> fetchList(@PathVariable LocalDate date) {
 		
-		List<ReportDto> reportDtoList = reportService.fetchList(Integer.parseInt(weekId));
+		List<ReportDto> reportDtoList = reportService.fetchList(date);
 		
 		List<ReportForm> reportFormList = new ArrayList<ReportForm>();
 		
