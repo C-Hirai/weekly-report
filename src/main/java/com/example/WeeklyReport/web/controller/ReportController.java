@@ -48,7 +48,7 @@ public class ReportController {
 		return reportFormList;
 	}
 	
-	@GetMapping("/dateList")
+	@GetMapping("/list")
 	public List<ReportDateForm> fetchDateList(){
 		
 		List<ReportDateForm> reportDateFormList = new ArrayList<ReportDateForm>();
