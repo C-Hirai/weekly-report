@@ -46,7 +46,7 @@ public class ProjectController {
 		return projectFormList;
 	}
 
-	@PostMapping
+	@PostMapping("/new")
 	public void register(@RequestBody ProjectForm projectForm) {
 
 		ProjectDto projectDto = new ProjectDto(null, projectForm.getName(), projectForm.getDeadline(),
