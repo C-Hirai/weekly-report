@@ -47,12 +47,14 @@ public class ProjectController {
 	}
 
 	@PostMapping("/new")
-	public void register(@RequestBody ProjectForm projectForm) {
+	public ProjectDto register(@RequestBody ProjectForm projectForm) {
 
 		ProjectDto projectDto = new ProjectDto(null, projectForm.getName(), projectForm.getDeadline(),
 				projectForm.getLeader(), projectForm.getMember(), null);
 		
 		projectService.register(projectDto);
+		
+		return projectDto;
 	}
 
 }
