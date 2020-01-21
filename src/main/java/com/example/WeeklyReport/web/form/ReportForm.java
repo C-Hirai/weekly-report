@@ -105,6 +105,14 @@ public class ReportForm {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+	
+	public ReportDateForm getReportDate() {
+		return reportDate;
+	}
+
+	public void setReportDate(ReportDateForm reportDate) {
+		this.reportDate = reportDate;
+	}
 
 	public ProjectForm getProject() {
 		return project;
@@ -127,4 +135,5 @@ public class ReportForm {
 				ReportDateForm.of(reportDto.getReportDate()),
 				ProjectForm.of(reportDto.getProject()));
 	}
+
 }
