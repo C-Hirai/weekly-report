@@ -11,7 +11,11 @@
 	  select * from project;
 	</select>
 	
-	<insert id="register" useGeneratedKeys="true" keyProperty="id">
-      insert into project (name, deadline, leader, member, statusCode) values (#{name}, #{deadline}, #{leader}, #{member}, #{statusCode})
+	<insert id="create" useGeneratedKeys="true" keyProperty="id">
+      insert into project (name, deadline, leader, member, statusCode) values (#{name}, #{deadline}, #{leader}, #{member}, #{statusCode});
+   </insert>
+   
+   <insert id="update" useGeneratedKeys="true" keyProperty="id">
+      update project set name = #{name}, deadline = #{deadline}, leader = #{leader}, member = #{member} where id = #{id};
    </insert>
 </mapper>

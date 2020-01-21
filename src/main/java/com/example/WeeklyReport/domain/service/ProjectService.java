@@ -38,11 +38,19 @@ public class ProjectService {
 		return projectDtoList;
 	}
 
-	public void register(ProjectDto projectDto) {
+	public void create(ProjectDto projectDto) {
 
 		Project project = new Project(null, projectDto.getName(), projectDto.getDeadline(), projectDto.getLeader(),
 				projectDto.getMember(), ProjectStatusType.OPEN.getCode());
 
-		projectMapper.register(project);
+		projectMapper.create(project);
+	}
+	
+	public void update(ProjectDto projectDto) {
+
+		Project project = new Project(projectDto.getId(), projectDto.getName(), projectDto.getDeadline(), projectDto.getLeader(),
+				projectDto.getMember(), null);
+
+		projectMapper.update(project);
 	}
 }

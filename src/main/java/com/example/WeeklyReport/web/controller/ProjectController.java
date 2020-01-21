@@ -47,13 +47,24 @@ public class ProjectController {
 	}
 
 	@PostMapping("/new")
-	public ProjectDto register(@RequestBody ProjectForm projectForm) {
+	public ProjectDto create(@RequestBody ProjectForm projectForm) {
 
 		ProjectDto projectDto = new ProjectDto(null, projectForm.getName(), projectForm.getDeadline(),
 				projectForm.getLeader(), projectForm.getMember(), null);
-		
-		projectService.register(projectDto);
-		
+
+		projectService.create(projectDto);
+
+		return projectDto;
+	}
+
+	@PostMapping("/edit/{projectId}")
+	public ProjectDto update(@RequestBody ProjectForm projectForm, @PathVariable String projectId) {
+
+		ProjectDto projectDto = new ProjectDto(Integer.parseInt(projectId), projectForm.getName(),
+				projectForm.getDeadline(), projectForm.getLeader(), projectForm.getMember(), null);
+
+		projectService.update(projectDto);
+
 		return projectDto;
 	}
 
