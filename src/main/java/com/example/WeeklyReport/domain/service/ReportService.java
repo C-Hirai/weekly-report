@@ -24,7 +24,7 @@ public class ReportService {
 
 	@Autowired
 	ReportMapper reportMapper;
-	
+
 	@Autowired
 	ReportDateMapper reportDateMapper;
 
@@ -34,24 +34,31 @@ public class ReportService {
 	public ReportDto fetch(int reportId) {
 
 		Report report = reportMapper.findById(reportId);
+		ReportDate reportDate = reportDateMapper.findById(report.getReportDateId());
+		Project project = projectMapper.findById(report.getProjectId());
 
-		ReportDto reportDto = ReportDto.of(report);
+		ReportDto reportDto = ReportDto.of(report, reportDate, project);
 
 		return reportDto;
 	}
 
 	public List<ReportDto> fetchList(LocalDate date) {
-		
-		ReportDate reportDate = reportDateMapper.findByDate(date);
+
+		ReportDate queryDate = reportDateMapper.findByDate(date);
 
 		List<Report> reportList = new ArrayList<Report>();
-		if(Objects.nonNull(reportDate)) {
-			reportList = reportMapper.findListById(reportDate.getId());
+		if (Objects.nonNull(queryDate)) {
+			reportList = reportMapper.findListById(queryDate.getId());
 		}
 
 		List<ReportDto> reportDtoList = new ArrayList<ReportDto>();
+		for (Report report : reportList) {
+			ReportDate reportDate = reportDateMapper.findById(report.getReportDateId());
+			Project project = projectMapper.findById(report.getProjectId());
 
-		reportList.stream().forEach(x -> reportDtoList.add(ReportDto.of(x)));
+			ReportDto reportDto = ReportDto.of(report, reportDate, project);
+			reportDtoList.add(reportDto);
+		}
 
 		return reportDtoList;
 	}
@@ -76,18 +83,18 @@ public class ReportService {
 		} else {
 			reportDateMapper.insert(LocalDate.now(), false);
 		}
-		
+
 		ReportDate createDate = reportDateMapper.findLatest();
 		List<Project> openProjectList = projectMapper.findOpenList();
-		
+
 		List<Report> reportList = new ArrayList<Report>();
 		for (Project p : openProjectList) {
 			Report r = new Report();
 			r.setReportDateId(createDate.getId());
 			r.setProjectId(p.getId());
-			
-			Report lastWeekReport = reportMapper.findLastWeek(createDate.getId()-1, p.getId());
-			if(Objects.nonNull(lastWeekReport)) {
+
+			Report lastWeekReport = reportMapper.findLastWeek(createDate.getId() - 1, p.getId());
+			if (Objects.nonNull(lastWeekReport)) {
 				r.setLastWeekCondition(lastWeekReport.getThisWeekCondition());
 				r.setThisWeekPlan(lastWeekReport.getNextWeekPlan());
 				r.setProblem(lastWeekReport.getProblem());
