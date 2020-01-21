@@ -7,14 +7,17 @@ public class ReportDate {
 	int id;
 
 	LocalDate date;
+	
+	boolean deleteFlg;
 
 	public ReportDate() {
 
 	}
 
-	public ReportDate(int id, LocalDate date) {
+	public ReportDate(int id, LocalDate date, boolean deleteFlg) {
 		this.id = id;
 		this.date = date;
+		this.deleteFlg = deleteFlg;
 	}
 	
 	public int getId() {
@@ -31,6 +34,14 @@ public class ReportDate {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	public boolean isDeleteFlg() {
+		return deleteFlg;
+	}
+
+	public void setDeleteFlg(boolean deleteFlg) {
+		this.deleteFlg = deleteFlg;
 	}
 
 }

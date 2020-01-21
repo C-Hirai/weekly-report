@@ -9,14 +9,17 @@ public class ReportDateForm {
 	int id;
 	
 	LocalDate date;
+	
+	boolean deleteFlg;
 
 	public ReportDateForm() {
 		
 	}
 	
-	public ReportDateForm(int id, LocalDate date) {
+	public ReportDateForm(int id, LocalDate date, boolean deleteFlg) {
 		this.id = id;
 		this.date = date;
+		this.deleteFlg = deleteFlg;
 	}
 
 	public int getId() {
@@ -35,7 +38,15 @@ public class ReportDateForm {
 		this.date = date;
 	}
 	
+	public boolean isDeleteFlg() {
+		return deleteFlg;
+	}
+
+	public void setDeleteFlg(boolean deleteFlg) {
+		this.deleteFlg = deleteFlg;
+	}
+	
 	public static ReportDateForm of(ReportDateDto reportDateDto) {
-		return new ReportDateForm(reportDateDto.getId(), reportDateDto.getDate());
+		return new ReportDateForm(reportDateDto.getId(), reportDateDto.getDate(), reportDateDto.isDeleteFlg());
 	}
 }

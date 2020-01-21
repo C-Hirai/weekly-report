@@ -11,8 +11,16 @@
 	  select * from report inner join project on report.projectId = project.id where report.weekId = #{id};
 	</select>
 	
+	<select id="findLatestDate" resultType="com.example.WeeklyReport.env.entity.ReportDate">
+	  select * from report_date where deleteFlg = '0' order by id desc limit 1;
+	</select>
+	
+	<insert id="insert">
+	  insert into report_date (date, deleteFlg) values (#{date}, #{deleteFlg});
+	</insert>
+	
 	<select id="findDateList" resultType="com.example.WeeklyReport.env.entity.ReportDate">
-	  select * from weekly_report where deleteFlg = '0';
+	  select * from report_date where deleteFlg = '0';
 	</select>
 	
 </mapper>

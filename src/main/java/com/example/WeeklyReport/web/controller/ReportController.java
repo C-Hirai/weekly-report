@@ -1,5 +1,6 @@
 package com.example.WeeklyReport.web.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,6 +58,14 @@ public class ReportController {
 		reportDateDtoList.stream().forEach(x -> reportDateFormList.add(ReportDateForm.of(x)));
 		
 		return reportDateFormList;
+	}
+	
+	@PostMapping("/new")
+	public LocalDate create() {
+		
+		LocalDate date = reportService.create();
+		
+		return date;
 	}
 
 }

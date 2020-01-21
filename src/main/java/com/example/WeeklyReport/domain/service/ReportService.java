@@ -1,7 +1,9 @@
 package com.example.WeeklyReport.domain.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,20 @@ public class ReportService {
 		reportDateList.stream().forEach(x -> reportDateDtoList.add(ReportDateDto.of(x)));
 		
 		return reportDateDtoList;
+	}
+	
+	public LocalDate create() {
+		
+		LocalDate date = LocalDate.now();
+		ReportDate reportDate = reportMapper.findLatestDate();
+		
+		if(Objects.nonNull(reportDate)) {
+			date = reportDate.getDate().plusDays(7);
+		} 
+		
+		reportMapper.insert(date, false);
+		
+		return date;
 	}
 	
 }
