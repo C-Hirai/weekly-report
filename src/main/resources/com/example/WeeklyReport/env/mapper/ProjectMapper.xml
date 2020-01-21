@@ -3,7 +3,7 @@
 <mapper
 	namespace="com.example.WeeklyReport.env.mapper.ProjectMapper">
 	
-	<select id="find" resultType="com.example.WeeklyReport.env.entity.Project">
+	<select id="findById" resultType="com.example.WeeklyReport.env.entity.Project">
 	  select * from project where id = #{projectId};
 	</select>
 	

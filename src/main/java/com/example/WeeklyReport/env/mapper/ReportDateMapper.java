@@ -11,6 +11,8 @@ import com.example.WeeklyReport.env.entity.ReportDate;
 @Mapper
 public interface ReportDateMapper {
 	
+	ReportDate findById(int id);
+	
 	ReportDate findByDate(LocalDate date);
 	
 	ReportDate findLatest();

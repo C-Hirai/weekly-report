@@ -4,7 +4,7 @@
 	namespace="com.example.WeeklyReport.env.mapper.ReportMapper">
 	
 	<select id="findById" resultType="com.example.WeeklyReport.env.entity.Report">
-	  select * from report inner join project on report.projectId = project.id where report.id = #{id};
+	  select * from report where id = #{id};
 	</select>
 	
 	<select id="findLastWeek" resultType="com.example.WeeklyReport.env.entity.Report">

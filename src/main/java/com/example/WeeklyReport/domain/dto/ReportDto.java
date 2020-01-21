@@ -1,6 +1,8 @@
 package com.example.WeeklyReport.domain.dto;
 
+import com.example.WeeklyReport.env.entity.Project;
 import com.example.WeeklyReport.env.entity.Report;
+import com.example.WeeklyReport.env.entity.ReportDate;
 
 public class ReportDto {
 
@@ -121,8 +123,8 @@ public class ReportDto {
 	public void setProject(ProjectDto project) {
 		this.project = project;
 	}
-
-	public static ReportDto of(Report report) {
+	
+	public static ReportDto of(Report report, ReportDate reportDate, Project project) {
 		return new ReportDto(
 				report.getId(), 
 				report.getLastWeekCondition(), 
@@ -132,7 +134,7 @@ public class ReportDto {
 				report.getProblem(), 
 				report.getNextWeekPlan(), 
 				report.getMemo(),
-				ReportDateDto.of(report.getReportDate()),
-				ProjectDto.of(report.getProject()));
+				ReportDateDto.of(reportDate),
+				ProjectDto.of(project));
 	}
 }

@@ -20,18 +20,14 @@ public class Report {
 	
 	int reportDateId;
 	
-	ReportDate reportDate;
-	
 	int projectId;
-
-	Project project;
 
 	public Report() {
 
 	}
 
 	public Report(int id, String lastWeekCondition, String thisWeekCondition, String thisWeekPlan, String thisWeekResult, String problem,
-			String nextWeekPlan, String memo, ReportDate reportDate, Project project) {
+			String nextWeekPlan, String memo, int reportDateId, int projectId) {
 		this.id = id;
 		this.lastWeekCondition = lastWeekCondition;
 		this.thisWeekCondition = thisWeekCondition;
@@ -40,8 +36,8 @@ public class Report {
 		this.thisWeekResult = thisWeekResult;
 		this.nextWeekPlan = nextWeekPlan;
 		this.memo = memo;
-		this.reportDate = reportDate;
-		this.project = project;
+		this.reportDateId = reportDateId;
+		this.projectId = projectId;
 	}
 
 	public int getId() {
@@ -115,14 +111,6 @@ public class Report {
 	public void setReportDateId(int reportDateId) {
 		this.reportDateId = reportDateId;
 	}
-
-	public ReportDate getReportDate() {
-		return reportDate;
-	}
-
-	public void setReportDate(ReportDate reportDate) {
-		this.reportDate = reportDate;
-	}
 	
 	public int getProjectId() {
 		return projectId;
@@ -132,11 +120,4 @@ public class Report {
 		this.projectId = projectId;
 	}
 
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
 }
