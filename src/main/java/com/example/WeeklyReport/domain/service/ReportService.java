@@ -118,5 +118,14 @@ public class ReportService {
 		
 		return report;
 	}
+	
+	public List<ReportDto> updateMemo(List<ReportDto> reportDtoList) {
+
+		for(ReportDto reportDto : reportDtoList) {
+			reportMapper.updateMemo(reportDto.getId(), reportDto.getMemo());
+		}
+		
+		return reportDtoList;
+	}
 
 }

@@ -82,5 +82,23 @@ public class ReportController {
 
 		return report;
 	}
+	
+	@PostMapping("/editMemo")
+	public List<ReportDto> updateMemo(@RequestBody List<ReportForm> reportFormList) {
+
+		
+		List<ReportDto> reportDtoList = new ArrayList<ReportDto>();
+		for(ReportForm reportForm : reportFormList) {
+			ReportDto reportDto = new ReportDto();
+			reportDto.setId(reportForm.getId());
+			reportDto.setMemo(reportForm.getMemo());
+			
+			reportDtoList.add(reportDto);
+		}
+		
+		List<ReportDto> list = reportService.updateMemo(reportDtoList);
+
+		return list;
+	}
 
 }

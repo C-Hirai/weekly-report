@@ -10,7 +10,7 @@ import com.example.WeeklyReport.env.entity.Report;
 @Mapper
 public interface ReportMapper {
 
-	Report findById(int reportId);
+	Report findById(int id);
 
 	Report findLastWeek(@Param("reportDateId") int reportDateId, @Param("projectId") int projectId);
 
@@ -19,4 +19,6 @@ public interface ReportMapper {
 	void insert(Report report);
 	
 	void update(Report report);
+	
+	void updateMemo(@Param("id") int Id, @Param("memo") String memo);
 }

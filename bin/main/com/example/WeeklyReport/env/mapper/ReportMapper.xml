@@ -23,4 +23,8 @@
 	  update report set thisWeekCondition = #{thisWeekCondition}, thisWeekPlan = #{thisWeekPlan}, thisWeekResult = #{thisWeekResult}, problem = #{problem}, nextWeekPlan = #{nextWeekPlan} where id = #{id};
 	</update>
 	
+	<update id="updateMemo">
+	  update report set memo = #{memo} where id = #{id};
+	</update>
+	
 </mapper>
